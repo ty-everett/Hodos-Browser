@@ -298,9 +298,12 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
       
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '22.23.4'
+
+      - name: Verify patched frontend build runtime
+        run: node -e "const a=require('node:assert/strict'),z=require('node:zlib'),c=require('node:crypto');a.equal(process.versions.node,'22.23.4');const b=Buffer.from('hodos build');a.deepEqual(z.brotliDecompressSync(z.brotliCompressSync(b)),b);a.equal(c.randomBytes(32).length,32)"
       
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
@@ -699,9 +702,12 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '22.23.4'
+
+      - name: Verify patched frontend build runtime
+        run: node -e "const a=require('node:assert/strict'),z=require('node:zlib'),c=require('node:crypto');a.equal(process.versions.node,'22.23.4');const b=Buffer.from('hodos build');a.deepEqual(z.brotliDecompressSync(z.brotliCompressSync(b)),b);a.equal(c.randomBytes(32).length,32)"
 
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
